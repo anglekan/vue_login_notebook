@@ -45,7 +45,7 @@ import store from './store.js'
                 this.store.getData(this.login.username,this.login.password)
                     .then(data=>{
                         // console.log('data=',data)
-                        if(data.id ===  this.login.username && data.password === this.login.password){
+                        if(data.id ===  this.login.username && data.password === md5(this.login.password)){
                             flag = 1
                         }
                         console.log('flag=',flag)
