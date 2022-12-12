@@ -1,4 +1,5 @@
 import { reactive } from 'vue'
+import md5 from './md5'
 
 const url = "http://123.60.44.50:3000"
 // const url = "http://127.0.0.1:8080"
@@ -25,7 +26,8 @@ export default reactive({
         .then(response => response.json())
         .then(data => {
             for(let i=0;i<data.length;i++){
-                if (data[i].id ===  id && data[i].password === pwd) {
+                // console.log('data[i].password=',data[i].password)
+                if (data[i].id ===  id && data[i].password === md5(pwd)) {
                     // localStorage.setItem("username",id)
                     let a = data[i]
                     // console.log('data[i]=',a)
@@ -64,7 +66,7 @@ export default reactive({
                 requestOptions.method = "POST"
                 requestOptions.body = JSON.stringify({
                     id:id,
-                    password:pwd,
+                    password:md5(pwd),
                     nickname:nam,  
                     email:emai,
                     phone:pho,
@@ -80,7 +82,7 @@ export default reactive({
         requestOptions.method = "PATCH"
         const userDatas = {
           id: id,  // id可省略，因为网址中有id
-          password: pwd,
+          password: md5(pwd),
           nickname: nick,
           phone:pho,
         //   email:emai,
