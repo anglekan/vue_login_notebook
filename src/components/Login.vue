@@ -20,7 +20,7 @@
 
 <script>
 // import {nanoid} from 'nanoid'
-
+import md5 from './md5'
 import store from './store.js'
 
     export default{
